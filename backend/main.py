@@ -12,11 +12,12 @@ from wardrobe.api import (
     statistics,
     wear_logs,
 )
+from wardrobe.reports.router import router as reports_router
 
 
 app = FastAPI(
     title="Wardrobe Mate",
-    version="0.2.0",
+    version="0.3.0",
     description="数字衣橱本地原型，提供衣物、搭配和穿着记录等内存管理接口。",
 )
 
@@ -29,5 +30,6 @@ for router in (
     statistics.router,
     catalog.router,
     exports.router,
+    reports_router,
 ):
     app.include_router(router)

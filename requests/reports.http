@@ -1,0 +1,13 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 下载衣物表
+GET {{baseUrl}}/reports/items.csv
+Accept: text/csv
+
+### 下载搭配表
+GET {{baseUrl}}/reports/outfits.csv
+Accept: text/csv
+
+### 下载穿着记录表
+GET {{baseUrl}}/reports/wear-logs.csv
+Accept: text/csv
