@@ -1,0 +1,24 @@
+@baseUrl = http://127.0.0.1:8000
+@favoriteId = 00000000-0000-0000-0000-000000000010
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 收藏已有单品
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+  "target_type": "item",
+  "target_id": "{{itemId}}"
+}
+
+### 所有收藏
+GET {{baseUrl}}/favorites
+
+### 仅查询衣物收藏
+GET {{baseUrl}}/favorites?target_type=item
+
+### 收藏详情
+GET {{baseUrl}}/favorites/{{favoriteId}}
+
+### 取消收藏
+DELETE {{baseUrl}}/favorites/{{favoriteId}}

@@ -1,0 +1,32 @@
+@baseUrl = http://127.0.0.1:8000
+@collectionId = 00000000-0000-0000-0000-000000000010
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 新建集合
+POST {{baseUrl}}/collections
+Content-Type: application/json
+
+{
+  "name": "通勤衣橱",
+  "description": "工作日容易组合的单品",
+  "item_ids": ["{{itemId}}"]
+}
+
+### 集合列表
+GET {{baseUrl}}/collections
+
+### 集合详情
+GET {{baseUrl}}/collections/{{collectionId}}
+
+### 完整更新为空集合
+PUT {{baseUrl}}/collections/{{collectionId}}
+Content-Type: application/json
+
+{
+  "name": "换季整理",
+  "description": "先建立集合，再添加衣物",
+  "item_ids": []
+}
+
+### 删除集合
+DELETE {{baseUrl}}/collections/{{collectionId}}

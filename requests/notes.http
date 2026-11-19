@@ -1,0 +1,32 @@
+@baseUrl = http://127.0.0.1:8000
+@noteId = 00000000-0000-0000-0000-000000000010
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 为已有衣物添加备注
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "target_type": "item",
+  "target_id": "{{itemId}}",
+  "content": "适合搭配深色直筒裤"
+}
+
+### 查询该单品的备注
+GET {{baseUrl}}/notes?target_type=item&target_id={{itemId}}
+
+### 备注详情
+GET {{baseUrl}}/notes/{{noteId}}
+
+### 完整更新备注
+PUT {{baseUrl}}/notes/{{noteId}}
+Content-Type: application/json
+
+{
+  "target_type": "item",
+  "target_id": "{{itemId}}",
+  "content": "补充搭配建议：鞋履选择白色"
+}
+
+### 删除备注
+DELETE {{baseUrl}}/notes/{{noteId}}

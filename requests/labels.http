@@ -1,0 +1,32 @@
+@baseUrl = http://127.0.0.1:8000
+@labelId = 00000000-0000-0000-0000-000000000010
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 新建标签，先替换真实衣物 ID
+POST {{baseUrl}}/labels
+Content-Type: application/json
+
+{
+  "name": "常穿",
+  "color": "#3B8A71",
+  "item_ids": ["{{itemId}}"]
+}
+
+### 标签列表
+GET {{baseUrl}}/labels
+
+### 标签详情
+GET {{baseUrl}}/labels/{{labelId}}
+
+### 完整更新标签
+PUT {{baseUrl}}/labels/{{labelId}}
+Content-Type: application/json
+
+{
+  "name": "周末",
+  "color": "#3B8A71",
+  "item_ids": []
+}
+
+### 删除标签
+DELETE {{baseUrl}}/labels/{{labelId}}
