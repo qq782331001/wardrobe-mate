@@ -1,0 +1,40 @@
+@baseUrl = http://127.0.0.1:8000
+@outfitId = 00000000-0000-0000-0000-000000000010
+@logId = 00000000-0000-0000-0000-000000000100
+
+### 记录一次穿着
+POST {{baseUrl}}/wear-logs
+Content-Type: application/json
+
+{
+  "outfit_id": "{{outfitId}}",
+  "worn_on": "2026-11-19",
+  "feedback": "liked",
+  "notes": "通勤穿着，活动方便"
+}
+
+### 穿着记录列表
+GET {{baseUrl}}/wear-logs
+Accept: application/json
+
+### 按搭配和日期范围筛选
+GET {{baseUrl}}/wear-logs?outfit_id={{outfitId}}&start_date=2026-11-01&end_date=2026-11-30
+Accept: application/json
+
+### 记录详情
+GET {{baseUrl}}/wear-logs/{{logId}}
+Accept: application/json
+
+### 完整更新记录
+PUT {{baseUrl}}/wear-logs/{{logId}}
+Content-Type: application/json
+
+{
+  "outfit_id": "{{outfitId}}",
+  "worn_on": "2026-11-19",
+  "feedback": "neutral",
+  "notes": "补充当天的穿着感受"
+}
+
+### 删除记录
+DELETE {{baseUrl}}/wear-logs/{{logId}}

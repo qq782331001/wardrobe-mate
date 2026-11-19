@@ -1,0 +1,5 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 导出当前进程内的衣橱数据
+GET {{baseUrl}}/export
+Accept: application/json

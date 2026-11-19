@@ -1,0 +1,35 @@
+@baseUrl = http://127.0.0.1:8000
+@outfitId = 00000000-0000-0000-0000-000000000010
+@topId = 00000000-0000-0000-0000-000000000001
+@bottomId = 00000000-0000-0000-0000-000000000002
+
+### 保存搭配，先替换真实衣物 ID
+POST {{baseUrl}}/outfits
+Content-Type: application/json
+
+{
+  "name": "日常通勤",
+  "item_ids": ["{{topId}}", "{{bottomId}}"],
+  "occasion": "commute"
+}
+
+### 搭配列表
+GET {{baseUrl}}/outfits
+Accept: application/json
+
+### 搭配详情
+GET {{baseUrl}}/outfits/{{outfitId}}
+Accept: application/json
+
+### 完整更新搭配
+PUT {{baseUrl}}/outfits/{{outfitId}}
+Content-Type: application/json
+
+{
+  "name": "周末轻装",
+  "item_ids": ["{{topId}}", "{{bottomId}}"],
+  "occasion": "weekend"
+}
+
+### 删除搭配，被穿着记录引用时会返回冲突
+DELETE {{baseUrl}}/outfits/{{outfitId}}

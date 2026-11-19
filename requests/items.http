@@ -1,0 +1,51 @@
+@baseUrl = http://127.0.0.1:8000
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 新增上装，记录返回的真实 ID
+POST {{baseUrl}}/items
+Content-Type: application/json
+
+{
+  "name": "白色棉质衬衫",
+  "category": "TOP",
+  "color": "白色",
+  "available": true
+}
+
+### 新增下装，记录返回的真实 ID
+POST {{baseUrl}}/items
+Content-Type: application/json
+
+{
+  "name": "深蓝直筒牛仔裤",
+  "category": "BOTTOM",
+  "color": "深蓝",
+  "available": true
+}
+
+### 衣橱列表
+GET {{baseUrl}}/items
+Accept: application/json
+
+### 可用上装
+GET {{baseUrl}}/items?category=TOP&available=true
+Accept: application/json
+
+### 衣物详情
+GET {{baseUrl}}/items/{{itemId}}
+Accept: application/json
+
+### 完整更新衣物
+PUT {{baseUrl}}/items/{{itemId}}
+Content-Type: application/json
+
+{
+  "name": "白色棉质衬衫",
+  "category": "TOP",
+  "color": "白色",
+  "image_url": null,
+  "available": false
+}
+
+### 删除衣物，被搭配引用时会返回冲突
+DELETE {{baseUrl}}/items/{{itemId}}

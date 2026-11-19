@@ -1,0 +1,20 @@
+@baseUrl = http://127.0.0.1:8000
+@lockedItemId = 00000000-0000-0000-0000-000000000001
+
+### 从已保存搭配中选择可用且穿着次数较少的搭配
+POST {{baseUrl}}/recommendations
+Content-Type: application/json
+
+{
+  "limit": 3
+}
+
+### 按场景筛选并锁定已有单品
+POST {{baseUrl}}/recommendations
+Content-Type: application/json
+
+{
+  "occasion": "commute",
+  "locked_item_ids": ["{{lockedItemId}}"],
+  "limit": 3
+}

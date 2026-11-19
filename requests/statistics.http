@@ -1,0 +1,5 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 衣物、搭配和穿着记录统计
+GET {{baseUrl}}/statistics
+Accept: application/json
