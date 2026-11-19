@@ -1,0 +1,16 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 读取本地演示偏好
+GET {{baseUrl}}/profile
+Accept: application/json
+
+### 完整替换偏好，目前不联动推荐
+PUT {{baseUrl}}/profile
+Content-Type: application/json
+
+{
+  "display_name": "衣橱主人",
+  "preferred_styles": ["简约", "通勤"],
+  "disliked_categories": ["ACC"],
+  "notes": "先整理现有衣服"
+}

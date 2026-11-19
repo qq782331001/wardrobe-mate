@@ -1,0 +1,30 @@
+@baseUrl = http://127.0.0.1:8000
+@outfitId = 00000000-0000-0000-0000-000000000010
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 保存布局，替换为搭配及其真实单品 ID
+PUT {{baseUrl}}/canvas/{{outfitId}}
+Content-Type: application/json
+
+{
+  "width": 1080,
+  "height": 1440,
+  "layers": [
+    {
+      "item_id": "{{itemId}}",
+      "x": 200,
+      "y": 180,
+      "scale": 1.2,
+      "rotation": 0,
+      "opacity": 1,
+      "z_index": 0
+    }
+  ]
+}
+
+### 读取布局及当前引用状态
+GET {{baseUrl}}/canvas/{{outfitId}}
+Accept: application/json
+
+### 仅删除布局
+DELETE {{baseUrl}}/canvas/{{outfitId}}

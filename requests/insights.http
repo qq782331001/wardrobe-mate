@@ -1,0 +1,9 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 显式指定结束日，汇总最近三十天
+GET {{baseUrl}}/insights?as_of=2026-11-19&days=30
+Accept: application/json
+
+### 查看结束日当天的记录
+GET {{baseUrl}}/insights?as_of=2026-11-19&days=1
+Accept: application/json

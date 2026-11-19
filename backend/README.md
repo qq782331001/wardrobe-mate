@@ -13,6 +13,8 @@ backend/
     models/            请求与返回模型
     services/          衣物、搭配、记录和推荐逻辑
     storage/           单进程内存存储
+    features/          整理、护理、出行和交互数据扩展
+    reports/           CSV 明细表下载
 ```
 
 路由负责接收请求与返回结果，模型负责约束输入，业务模块处理内存数据。当前接口在单个异步调用内完成同步内存操作；加入外部 I/O、线程或持久化时需要重新考虑并发与事务边界。
@@ -41,6 +43,30 @@ python -m venv .venv
 | `/statistics` | 衣物数量、分类分布与穿着次数统计 |
 | `/catalog/categories` | 衣物分类值与中文名称 |
 | `/export` | 导出当前进程内的衣物、搭配和记录 |
+| `/reports/items.csv` | 衣物明细 CSV |
+| `/reports/outfits.csv` | 搭配明细 CSV |
+| `/reports/wear-logs.csv` | 穿着记录 CSV |
+
+## 扩展模块
+
+| 路径 | 说明 |
+| --- | --- |
+| `/labels` | [标签与单品关联](wardrobe/features/labels/README.md) |
+| `/collections` | [衣物集合](wardrobe/features/collections/README.md) |
+| `/favorites` | [衣物与搭配收藏](wardrobe/features/favorites/README.md) |
+| `/notes` | [资源备注](wardrobe/features/notes/README.md) |
+| `/care-tasks` | [洗护与维修安排](wardrobe/features/care_tasks/README.md) |
+| `/packing-lists` | [出行打包清单](wardrobe/features/packing_lists/README.md) |
+| `/planner` | [按日期安排穿搭](wardrobe/features/planner/README.md) |
+| `/wishlist` | [待购清单](wardrobe/features/wishlist/README.md) |
+| `/profile` | [本地演示偏好](wardrobe/features/profile/README.md) |
+| `/canvas/{outfit_id}` | [画布布局数据](wardrobe/features/canvas/README.md) |
+| `/search` | [衣物与搭配文本搜索](wardrobe/features/search/README.md) |
+| `/insights` | [显式日期窗口的穿着分析](wardrobe/features/insights/README.md) |
+
+有状态扩展将数据保存在各自进程内；搜索和洞察直接读取基础数据，不提供账号体系。
+核心衣物或搭配被删除后，相关扩展记录可能保留；通过资源存在状态或缺失标识呈现，不自动级联删除。
+护理任务不改变衣物可用状态，偏好不自动影响推荐，画布仅保存布局数据。
 
 ## 当前语义
 
@@ -51,6 +77,7 @@ python -m venv .venv
 - 推荐只筛选已保存搭配，不自动生成新组合，不调用 AI，也不考虑实时天气。
 - 统计来自当前保存的数据，不代表经过校验的长期历史。
 - 导出内容是数据快照，目前没有对应的恢复或导入接口。
+- JSON 与 CSV 导出仅覆盖基础衣物、搭配和穿着记录，暂不包含扩展模块。
 
 ## 限制
 

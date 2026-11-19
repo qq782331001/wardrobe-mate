@@ -1,0 +1,9 @@
+@baseUrl = http://127.0.0.1:8000
+
+### 搜索衣物名称或颜色
+GET {{baseUrl}}/search?q=白色&limit=20
+Accept: application/json
+
+### 搜索搭配名称或场景
+GET {{baseUrl}}/search?q=commute&limit=10
+Accept: application/json
