@@ -1,0 +1,38 @@
+@baseUrl = http://127.0.0.1:8000
+@listId = 00000000-0000-0000-0000-000000000030
+@itemId = 00000000-0000-0000-0000-000000000001
+
+### 创建出行清单，替换真实衣物 ID
+POST {{baseUrl}}/packing-lists
+Content-Type: application/json
+
+{
+  "name": "周末短途行李",
+  "destination": "杭州",
+  "start_date": "2026-11-21",
+  "end_date": "2026-11-22",
+  "item_ids": ["{{itemId}}"],
+  "packed_item_ids": []
+}
+
+### 清单列表
+GET {{baseUrl}}/packing-lists
+
+### 查看清单
+GET {{baseUrl}}/packing-lists/{{listId}}
+
+### 将衣物记录为已装箱
+PUT {{baseUrl}}/packing-lists/{{listId}}
+Content-Type: application/json
+
+{
+  "name": "周末短途行李",
+  "destination": "杭州",
+  "start_date": "2026-11-21",
+  "end_date": "2026-11-22",
+  "item_ids": ["{{itemId}}"],
+  "packed_item_ids": ["{{itemId}}"]
+}
+
+### 删除清单，不删除衣物
+DELETE {{baseUrl}}/packing-lists/{{listId}}

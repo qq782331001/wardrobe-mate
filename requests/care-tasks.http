@@ -1,0 +1,36 @@
+@baseUrl = http://127.0.0.1:8000
+@itemId = 00000000-0000-0000-0000-000000000001
+@taskId = 00000000-0000-0000-0000-000000000020
+
+### 新增护理任务，替换真实衣物 ID
+POST {{baseUrl}}/care-tasks
+Content-Type: application/json
+
+{
+  "item_id": "{{itemId}}",
+  "kind": "wash",
+  "status": "pending",
+  "due_on": "2026-11-20",
+  "notes": "按衣物洗护标签处理"
+}
+
+### 待完成任务
+GET {{baseUrl}}/care-tasks?status=pending
+
+### 任务详情
+GET {{baseUrl}}/care-tasks/{{taskId}}
+
+### 更新为已完成，不自动恢复衣物可用状态
+PUT {{baseUrl}}/care-tasks/{{taskId}}
+Content-Type: application/json
+
+{
+  "item_id": "{{itemId}}",
+  "kind": "wash",
+  "status": "done",
+  "due_on": "2026-11-20",
+  "notes": "已完成护理"
+}
+
+### 删除任务
+DELETE {{baseUrl}}/care-tasks/{{taskId}}

@@ -1,0 +1,34 @@
+@baseUrl = http://127.0.0.1:8000
+@outfitId = 00000000-0000-0000-0000-000000000010
+@planId = 00000000-0000-0000-0000-000000000040
+
+### 新增计划，替换真实搭配 ID
+POST {{baseUrl}}/planner
+Content-Type: application/json
+
+{
+  "outfit_id": "{{outfitId}}",
+  "planned_on": "2026-11-23",
+  "occasion": "commute",
+  "notes": "周一通勤备选"
+}
+
+### 查看日期区间内的计划
+GET {{baseUrl}}/planner?start_date=2026-11-19&end_date=2026-11-30
+
+### 查看计划
+GET {{baseUrl}}/planner/{{planId}}
+
+### 完整修改日期和备注
+PUT {{baseUrl}}/planner/{{planId}}
+Content-Type: application/json
+
+{
+  "outfit_id": "{{outfitId}}",
+  "planned_on": "2026-11-24",
+  "occasion": "commute",
+  "notes": "改到周二"
+}
+
+### 删除计划
+DELETE {{baseUrl}}/planner/{{planId}}

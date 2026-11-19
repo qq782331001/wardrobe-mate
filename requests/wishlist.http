@@ -1,0 +1,39 @@
+@baseUrl = http://127.0.0.1:8000
+@wishId = 00000000-0000-0000-0000-000000000050
+
+### 保存待购意向
+POST {{baseUrl}}/wishlist
+Content-Type: application/json
+
+{
+  "name": "黑色短款外套",
+  "category": "OUTER",
+  "color": "黑色",
+  "product_url": null,
+  "budget": "599.00",
+  "priority": "high",
+  "notes": "先确认现有衣橱能否搭配"
+}
+
+### 查看高优先级外套意向
+GET {{baseUrl}}/wishlist?category=OUTER&priority=high
+
+### 查看待购意向
+GET {{baseUrl}}/wishlist/{{wishId}}
+
+### 完整更新待购意向
+PUT {{baseUrl}}/wishlist/{{wishId}}
+Content-Type: application/json
+
+{
+  "name": "黑色短款外套",
+  "category": "OUTER",
+  "color": "黑色",
+  "product_url": null,
+  "budget": "499.00",
+  "priority": "normal",
+  "notes": "调整预算，继续考虑"
+}
+
+### 删除待购意向
+DELETE {{baseUrl}}/wishlist/{{wishId}}

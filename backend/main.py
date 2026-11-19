@@ -12,10 +12,14 @@ from wardrobe.api import (
     statistics,
     wear_logs,
 )
+from wardrobe.features.care_tasks.router import router as care_tasks_router
 from wardrobe.features.collections.router import router as collections_router
 from wardrobe.features.favorites.router import router as favorites_router
 from wardrobe.features.labels.router import router as labels_router
 from wardrobe.features.notes.router import router as notes_router
+from wardrobe.features.packing_lists.router import router as packing_lists_router
+from wardrobe.features.planner.router import router as planner_router
+from wardrobe.features.wishlist.router import router as wishlist_router
 from wardrobe.reports.router import router as reports_router
 
 
@@ -39,5 +43,9 @@ for router in (
     collections_router,
     favorites_router,
     notes_router,
+    care_tasks_router,
+    packing_lists_router,
+    planner_router,
+    wishlist_router,
 ):
     app.include_router(router)
